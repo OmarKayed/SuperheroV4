@@ -32,10 +32,10 @@ public class Superhelt {
     public Superhelt () {
 
     }
-
+// If superheroName is empty
     public String getHeroName() {
         if (superheroName.isEmpty()) {
-            return "Intet superhelte navn";
+            return "Intet superhelte navn fundet";
         } else {
             return superheroName;
         }

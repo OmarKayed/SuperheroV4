@@ -1,5 +1,6 @@
 package com.example.superheroversion4.repositories;
 
+import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheltDTO;
 import com.example.superheroversion4.model.Superhelt;
@@ -88,7 +89,43 @@ public class SuperheltRepository implements iRepository {
         }
     }
 
+    public List<HeroPowerDTO> CertinHeroWithHeropower (String superheroName) {
+        List<HeroPowerDTO> heroPowerDTOList = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
+            String SQL = "SELECT superheroName, realName, superpower FROM Superhero WHERE superheroName = ?";
+            PreparedStatement stmt = con.prepareStatement(SQL);
+            stmt.setString(1, superheroName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String superheroname = rs.getString("superheroName");
+                String realName = rs.getString("realName");
+                String superpower = rs.getString("superpower");
+                heroPowerDTOList.add(new HeroPowerDTO(superheroname, realName, superpower));
+            }
+            return heroPowerDTOList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<CityHeroDTO> HeroFromCityWithName(String superheroName){
+        List<CityHeroDTO> cityHeroDTOList = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
+            String SQL = "SELECT realName, cityName FROM Superhero WHERE superheroName = ?";
+            PreparedStatement stmt = con.prepareStatement(SQL);
+            stmt.setString(1, superheroName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String realName = rs.getString("realName");
+                String cityName = rs.getString("cityName");
+                cityHeroDTOList.add(new CityHeroDTO(realName, cityName));
+            }
+            return cityHeroDTOList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    }
 
 
 
-}

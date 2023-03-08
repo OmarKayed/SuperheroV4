@@ -1,5 +1,6 @@
 package com.example.superheroversion4.service;
 
+import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheltDTO;
 import com.example.superheroversion4.model.Superhelt;
@@ -26,5 +27,13 @@ public class SuperheltService {
 
     public SuperheltDTO getOneSuperhero(String superheroName){
         return superheltRepository.getOneSuperhero(superheroName);
+    }
+
+    public List<HeroPowerDTO> CertinHeroWithHeropower(String superheroName) {
+        return superheltRepository.CertinHeroWithHeropower(superheroName);
+    }
+
+    public List <CityHeroDTO> HeroFromCityWithName (String superheroName) {
+        return superheltRepository.HeroFromCityWithName(superheroName);
     }
 }

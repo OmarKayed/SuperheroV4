@@ -1,5 +1,6 @@
 package com.example.superheroversion4.controller;
 
+import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroCountPowerDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheltDTO;
@@ -41,7 +42,18 @@ public class SuperheltController {
     public ResponseEntity<List<HeroPowerDTO>> getAllPower(@PathVariable String superheroName) {
         List<HeroPowerDTO> superheroList = superheltService.getAllPowers(superheroName);
         return new ResponseEntity<List<HeroPowerDTO>>(superheroList, HttpStatus.OK);
+    }
 
+    @GetMapping(path = {"superpower/{superheroName}"})
+    public ResponseEntity<List<HeroPowerDTO>> CertinHeroWithHeropower(@PathVariable String superheroName) {
+        List <HeroPowerDTO> superheroWithPower = superheltService.CertinHeroWithHeropower(superheroName);
+        return new ResponseEntity<>(superheroWithPower, HttpStatus.OK);
+    }
+
+    @GetMapping(path = {"city/{superheroName}"})
+    public ResponseEntity<List<CityHeroDTO>> HeroFromCityWithName(@PathVariable String superheroName) {
+        List<CityHeroDTO> superheroCitylist = superheltService.HeroFromCityWithName(superheroName);
+        return new ResponseEntity<>(superheroCitylist, HttpStatus.OK);
     }
 
 }
