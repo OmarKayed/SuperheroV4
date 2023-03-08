@@ -23,7 +23,7 @@ public class SuperheltRepository implements iRepository {
     private String pwd;
 
 
-   //
+   // Return all heroes
     public List<Superhelt> getSuperhero() {
         List<Superhelt> superheroes = new ArrayList<Superhelt>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
@@ -68,23 +68,26 @@ public class SuperheltRepository implements iRepository {
         }
     }
 
-    public List<HeroPowerDTO> getAllPowers(String superheroname) {
+    //Power for one superhero
+    public List<HeroPowerDTO> getAllPowers(String superheroName) {
         List<HeroPowerDTO> heroPowerDTOlist = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
-            String SQL = "SELECT superheroName, realName, SUM(superpower) as superpower FROM Superhero GROUP BY superheroName, realName;";
-            PreparedStatement pstmt = con.prepareStatement(SQL);
-            ResultSet rs = pstmt.executeQuery();
+            String SQL = "SELECT superheroName, realName, SUM(superpower) as superpower FROM Superhero WHERE superheroName = ? GROUP BY superheroName, realName;";
+            PreparedStatement stmt = con.prepareStatement(SQL);
+            stmt.setString(1, superheroName);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String superheroName = rs.getString("superheroName");
+                String superheroname = rs.getString("superheroName");
                 String realName = rs.getString("realName");
                 String superpower = rs.getString("superpower");
-                heroPowerDTOlist.add(new HeroPowerDTO(superheroName, realName, superpower));
+                heroPowerDTOlist.add(new HeroPowerDTO(superheroname, realName, superpower));
             }
             return heroPowerDTOlist;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
 
 
