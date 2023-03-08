@@ -28,15 +28,4 @@ public class HeroPowerDTO {
         return superpower;
     }
 
-    public void setSuperheroName(String superheroName) {
-        this.superheroName = superheroName;
-    }
-
-    public void setSuperpower(String superpower) {
-        this.superpower = superpower;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
 }
