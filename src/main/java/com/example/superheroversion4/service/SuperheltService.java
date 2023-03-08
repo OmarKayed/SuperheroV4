@@ -1,6 +1,7 @@
 package com.example.superheroversion4.service;
 
 import com.example.superheroversion4.dto.HeroPowerDTO;
+import com.example.superheroversion4.dto.SuperheltDTO;
 import com.example.superheroversion4.model.Superhelt;
 import com.example.superheroversion4.repositories.SuperheltRepository;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,11 @@ public class SuperheltService {
         return superheltRepository.getSuperhero();
     }
 
-    public List<HeroPowerDTO> getAllPowers(){
-        return superheltRepository.getAllPowers();
+    public List<HeroPowerDTO> getAllPowers(String superheroName){
+        return superheltRepository.getAllPowers(superheroName);
     }
 
-    public Superhelt getOneSuperhero(String superheroName){
+    public SuperheltDTO getOneSuperhero(String superheroName){
         return superheltRepository.getOneSuperhero(superheroName);
     }
 }

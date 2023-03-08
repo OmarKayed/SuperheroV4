@@ -1,6 +1,7 @@
 package com.example.superheroversion4.repositories;
 
 import com.example.superheroversion4.dto.HeroPowerDTO;
+import com.example.superheroversion4.dto.SuperheltDTO;
 import com.example.superheroversion4.model.Superhelt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class SuperheltRepository {
+public class SuperheltRepository implements iRepository {
 
     @Value("${spring.datasource.url}")
     private String db_url;
@@ -22,6 +23,7 @@ public class SuperheltRepository {
     private String pwd;
 
 
+   //
     public List<Superhelt> getSuperhero() {
         List<Superhelt> superheroes = new ArrayList<Superhelt>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
@@ -44,22 +46,21 @@ public class SuperheltRepository {
         }
     }
 
-    public Superhelt getOneSuperhero(String superheroName) {
+
+    // Return one hero
+    public SuperheltDTO getOneSuperhero(String superheroName) {
 
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
-            String SQL = "SELECT * FROM Superhero WHERE superheroName = ?;";
+            String SQL = "SELECT superheroName, realName, creationYear FROM Superhero WHERE superheroName = ?;";
             PreparedStatement pstm = con.prepareStatement(SQL);
             pstm.setString(1, superheroName);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                int superheroID = rs.getInt("superheroID");
-                String superheroname = rs.getString("superheroName");
+                String superheroname = rs.getString("superheroname");
                 String realName = rs.getString("realName");
                 int creationYear = rs.getInt("creationYear");
-                String cityName = rs.getString("cityName");
-                String superpower = rs.getString("superpower");
-                boolean isHuman = rs.getBoolean("isHuman");
-                return new Superhelt(superheroID, superheroname, realName, creationYear, cityName, superpower, isHuman);
+
+                return new SuperheltDTO(superheroname, realName, creationYear);
             }
             return null;
         } catch (SQLException e) {
@@ -67,13 +68,13 @@ public class SuperheltRepository {
         }
     }
 
-    public List<HeroPowerDTO> getAllPowers() {
+    public List<HeroPowerDTO> getAllPowers(String superheroname) {
         List<HeroPowerDTO> heroPowerDTOlist = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
-            String SQL = "SELECT superheroName, realName, superpower FROM Superhero WHERE superpower = ? ;";
+            String SQL = "SELECT superheroName, realName, SUM(superpower) as superpower FROM Superhero GROUP BY superheroName, realName;";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 String superheroName = rs.getString("superheroName");
                 String realName = rs.getString("realName");
                 String superpower = rs.getString("superpower");

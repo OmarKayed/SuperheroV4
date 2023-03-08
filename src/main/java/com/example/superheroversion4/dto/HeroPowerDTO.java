@@ -6,10 +6,10 @@ import java.util.List;
 public class HeroPowerDTO {
     private String superheroName;
     private String realName;
-    List<String> superpower;
+    private String superpower;
 
 
-    public HeroPowerDTO(String superheroName, String realName, List<String> superpower) {
+    public HeroPowerDTO(String superheroName, String realName, String superpower) {
         this.superheroName = superheroName;
         this.realName = realName;
         this.superpower = superpower;
@@ -24,7 +24,7 @@ public class HeroPowerDTO {
         return realName;
     }
 
-    public List<String> getSuperpower() {
+    public String getSuperpower() {
         return superpower;
     }
 
@@ -32,7 +32,7 @@ public class HeroPowerDTO {
         this.superheroName = superheroName;
     }
 
-    public void setSuperpower(List<String> superpower) {
+    public void setSuperpower(String superpower) {
         this.superpower = superpower;
     }
 

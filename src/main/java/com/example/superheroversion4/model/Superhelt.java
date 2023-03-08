@@ -22,6 +22,25 @@ public class Superhelt {
         this.isHuman = isHuman;
     }
 
+    public Superhelt(String superheroname, String realName, int creationYear) {
+        this.superheroName = superheroname;
+        this.realName = realName;
+        this.creationYear = creationYear;
+
+    }
+
+    public Superhelt () {
+
+    }
+
+    public String getHeroName() {
+        if (superheroName.isEmpty()) {
+            return "Intet superhelte navn";
+        } else {
+            return superheroName;
+        }
+    }
+
     public int getSuperheroID() {
         return superheroID;
     }
@@ -44,34 +63,6 @@ public class Superhelt {
 
     public String getCityName() {
         return cityName;
-    }
-
-    public void setSuperheroName(String superheroName) {
-        this.superheroName = superheroName;
-    }
-
-    public void setSuperheroID(int superheroID) {
-        this.superheroID = superheroID;
-    }
-
-    public void setCreationYear(int creationYear) {
-        this.creationYear = creationYear;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public void setSuperpower(String superpower) {
-        this.superpower = superpower;
-    }
-
-    public void setHuman(boolean human) {
-        isHuman = human;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
     }
 }
 
