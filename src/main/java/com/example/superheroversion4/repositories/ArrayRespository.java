@@ -13,6 +13,7 @@ public class ArrayRespository implements iRepository{
     @Override
     public List<Superhelt> getSuperhero() {
         List<Superhelt> superhelt = new ArrayList<>();
+
         for (Superhelt superhero : superhelt) {
             superhelt.add(new Superhelt(superhero.getSuperheroID(), superhero.getSuperheroName(), superhero.getRealName(),
                     superhero.getCreationYear(), superhero.getCityName(), superhero.getSuperpower(), superhero.isHuman()));
@@ -36,6 +37,7 @@ public class ArrayRespository implements iRepository{
     @Override
     public List<HeroPowerDTO> getAllPowers(String superheroName) {
         List<HeroPowerDTO> heroPowerDTOList = new ArrayList<>();
+
         for (HeroPowerDTO superpower : heroPowerDTOList) {
             if (superpower.getSuperheroName().equals(superheroName)) {
                 heroPowerDTOList.add(superpower);
@@ -47,6 +49,7 @@ public class ArrayRespository implements iRepository{
     @Override
     public List<HeroPowerDTO> CertinHeroWithHeropower(String superheroName) {
         List<HeroPowerDTO> heroPowerDTOList = new ArrayList<>();
+
         for (HeroPowerDTO superpower : heroPowerDTOList) {
             if (superpower.getSuperheroName().equals(superheroName)) {
                 heroPowerDTOList.add(superpower);
@@ -60,7 +63,6 @@ public class ArrayRespository implements iRepository{
     public List<CityHeroDTO> HeroFromCityWithName(String superheroName) {
         List<CityHeroDTO> cityHeroDTOList = new ArrayList<>();
 
-        // find heroes with specified name
         for (CityHeroDTO cityHeroDTO : cityHeroDTOList) {
             if (cityHeroDTO.getRealName().equals(superheroName)) {
                 cityHeroDTOList.add(new CityHeroDTO(cityHeroDTO.getRealName(), cityHeroDTO.getCityname()));
