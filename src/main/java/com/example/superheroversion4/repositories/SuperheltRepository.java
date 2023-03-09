@@ -25,6 +25,7 @@ public class SuperheltRepository implements iRepository {
 
 
    // Return all heroes
+    @Override
     public List<Superhelt> getSuperhero() {
         List<Superhelt> superheroes = new ArrayList<Superhelt>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
@@ -49,7 +50,9 @@ public class SuperheltRepository implements iRepository {
 
 
     // Return one hero
-    public SuperheltDTO getOneSuperhero(String superheroName) {
+    @Override
+    public List<SuperheltDTO> getOneSuperhero(String superheroName) {
+        List<SuperheltDTO> superheltDTOList = new ArrayList<>();
 
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
             String SQL = "SELECT superheroName, realName, creationYear FROM Superhero WHERE superheroName = ?;";
@@ -60,20 +63,21 @@ public class SuperheltRepository implements iRepository {
                 String superheroname = rs.getString("superheroname");
                 String realName = rs.getString("realName");
                 int creationYear = rs.getInt("creationYear");
-
-                return new SuperheltDTO(superheroname, realName, creationYear);
+                superheltDTOList.add(new SuperheltDTO(superheroname, realName, creationYear));
             }
-            return null;
+            return superheltDTOList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    //Power for one superhero
+
+    // Get powers for one
+    @Override
     public List<HeroPowerDTO> getAllPowers(String superheroName) {
         List<HeroPowerDTO> heroPowerDTOlist = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
-            String SQL = "SELECT superheroName, realName, SUM(superpower) as superpower FROM Superhero WHERE superheroName = ? GROUP BY superheroName, realName;";
+            String SQL = "SELECT superheroName, realName, count(superpower) as superpower FROM Superhero WHERE superheroName = ? GROUP BY superheroName, realName;";
             PreparedStatement stmt = con.prepareStatement(SQL);
             stmt.setString(1, superheroName);
             ResultSet rs = stmt.executeQuery();
@@ -89,6 +93,8 @@ public class SuperheltRepository implements iRepository {
         }
     }
 
+    //Get a certin hero with a certin superpower
+    @Override
     public List<HeroPowerDTO> CertinHeroWithHeropower (String superheroName) {
         List<HeroPowerDTO> heroPowerDTOList = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
@@ -108,6 +114,8 @@ public class SuperheltRepository implements iRepository {
         }
     }
 
+    //Get superhero from a city
+    @Override
     public List<CityHeroDTO> HeroFromCityWithName(String superheroName){
         List<CityHeroDTO> cityHeroDTOList = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {

@@ -32,14 +32,6 @@ public class Superhelt {
     public Superhelt () {
 
     }
-// If superheroName is empty
-    public String getHeroName() {
-        if (superheroName.isEmpty()) {
-            return "Intet superhelte navn fundet";
-        } else {
-            return superheroName;
-        }
-    }
 
     public int getSuperheroID() {
         return superheroID;
@@ -57,12 +49,28 @@ public class Superhelt {
         return creationYear;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
     public String getSuperpower() {
         return superpower;
     }
 
-    public String getCityName() {
-        return cityName;
+    public boolean isHuman() {
+        return isHuman;
     }
-}
+
+    // If superheroName is empty
+    public String getHeroName() {
+        if (superheroName.isEmpty()) {
+            return "Intet superhelte navn fundet";
+        } else {
+            return superheroName;
+        }
+
+
+    }
+    }
+
 

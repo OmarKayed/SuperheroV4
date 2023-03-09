@@ -25,7 +25,7 @@ public class SuperheltService {
         return superheltRepository.getAllPowers(superheroName);
     }
 
-    public SuperheltDTO getOneSuperhero(String superheroName){
+    public List<SuperheltDTO> getOneSuperhero(String superheroName){
         return superheltRepository.getOneSuperhero(superheroName);
     }
 
@@ -36,4 +36,5 @@ public class SuperheltService {
     public List <CityHeroDTO> HeroFromCityWithName (String superheroName) {
         return superheltRepository.HeroFromCityWithName(superheroName);
     }
+
 }

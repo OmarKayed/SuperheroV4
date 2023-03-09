@@ -32,11 +32,10 @@ public class SuperheltController {
     }
 
     @GetMapping(path = {"superhelt/{superheroName}"})
-    public ResponseEntity<SuperheltDTO> getOneSuperhero(@PathVariable String superheroName) {
-        SuperheltDTO superhero = superheltService.getOneSuperhero(superheroName);
+    public ResponseEntity<List<SuperheltDTO>> getOneSuperhero(@PathVariable String superheroName) {
+        List<SuperheltDTO> superhero = superheltService.getOneSuperhero(superheroName);
         return new ResponseEntity<>(superhero, HttpStatus.OK);
     }
-
 
     @GetMapping(path = {"/superpower/count/{superheroName}"})
     public ResponseEntity<List<HeroPowerDTO>> getAllPower(@PathVariable String superheroName) {
