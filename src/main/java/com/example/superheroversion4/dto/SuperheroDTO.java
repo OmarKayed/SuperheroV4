@@ -1,11 +1,11 @@
 package com.example.superheroversion4.dto;
 
-public class SuperheltDTO {
+public class SuperheroDTO {
     private String superheroName;
     private String realName;
     private int creationYear;
 
-    public SuperheltDTO(String superheroName, String realName, int creationYear) {
+    public SuperheroDTO(String superheroName, String realName, int creationYear) {
         this.superheroName = superheroName;
         this.realName = realName;
         this.creationYear = creationYear;

@@ -2,7 +2,7 @@ package com.example.superheroversion4.repositories;
 
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
-import com.example.superheroversion4.dto.SuperheltDTO;
+import com.example.superheroversion4.dto.SuperheroDTO;
 import com.example.superheroversion4.model.Superhelt;
 
 import java.util.ArrayList;
@@ -21,16 +21,16 @@ public class ArrayRespository implements iRepository{
     }
 
     @Override
-    public List<SuperheltDTO> getOneSuperhero(String superheroName) {
-        List<SuperheltDTO> superheltDTOArrayList = new ArrayList<>();
+    public List<SuperheroDTO> getOneSuperhero(String superheroName) {
+        List<SuperheroDTO> superheroDTOArrayList = new ArrayList<>();
 
-        for (SuperheltDTO superhero : superheltDTOArrayList) {
+        for (SuperheroDTO superhero : superheroDTOArrayList) {
             String name = superhero.getSuperheroName().toLowerCase();
             if (name.contains(superheroName.toLowerCase().trim())) {
-                superheltDTOArrayList.add(new SuperheltDTO(superhero.getSuperheroName(), superhero.getRealName(), superhero.getCreationYear()));
+                superheroDTOArrayList.add(new SuperheroDTO(superhero.getSuperheroName(), superhero.getRealName(), superhero.getCreationYear()));
             }
         }
-        return superheltDTOArrayList;
+        return superheroDTOArrayList;
     }
 
     @Override

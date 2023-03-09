@@ -2,7 +2,7 @@ package com.example.superheroversion4.repositories;
 
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
-import com.example.superheroversion4.dto.SuperheltDTO;
+import com.example.superheroversion4.dto.SuperheroDTO;
 import com.example.superheroversion4.model.Superhelt;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface iRepository {
     List<Superhelt> getSuperhero();
 
     // Svar på første JSON spørgsmål, som indebærer superheroName, realName og creationYear
-    List<SuperheltDTO> getOneSuperhero(String superheroName);
+    List<SuperheroDTO> getOneSuperhero(String superheroName);
 
     // Svar på andet JSON spørgsmål, som formoder at udregne den samlede mængde af superkræfter som en superhelt har
     // Attributterne som den indeholder er superheroName, realName, superpower

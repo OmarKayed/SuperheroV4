@@ -2,7 +2,7 @@ package com.example.superheroversion4.repositories;
 
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
-import com.example.superheroversion4.dto.SuperheltDTO;
+import com.example.superheroversion4.dto.SuperheroDTO;
 import com.example.superheroversion4.model.Superhelt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -51,8 +51,8 @@ public class SuperheltRepository implements iRepository {
 
     // Return one hero
     @Override
-    public List<SuperheltDTO> getOneSuperhero(String superheroName) {
-        List<SuperheltDTO> superheltDTOList = new ArrayList<>();
+    public List<SuperheroDTO> getOneSuperhero(String superheroName) {
+        List<SuperheroDTO> superheroDTOList = new ArrayList<>();
 
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
             String SQL = "SELECT superheroName, realName, creationYear FROM Superhero WHERE superheroName = ?;";
@@ -63,9 +63,9 @@ public class SuperheltRepository implements iRepository {
                 String superheroname = rs.getString("superheroname");
                 String realName = rs.getString("realName");
                 int creationYear = rs.getInt("creationYear");
-                superheltDTOList.add(new SuperheltDTO(superheroname, realName, creationYear));
+                superheroDTOList.add(new SuperheroDTO(superheroname, realName, creationYear));
             }
-            return superheltDTOList;
+            return superheroDTOList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -1,9 +1,8 @@
 package com.example.superheroversion4.controller;
 
 import com.example.superheroversion4.dto.CityHeroDTO;
-import com.example.superheroversion4.dto.HeroCountPowerDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
-import com.example.superheroversion4.dto.SuperheltDTO;
+import com.example.superheroversion4.dto.SuperheroDTO;
 import com.example.superheroversion4.model.Superhelt;
 import com.example.superheroversion4.service.SuperheltService;
 import org.springframework.http.HttpStatus;
@@ -32,8 +31,8 @@ public class SuperheltController {
     }
 
     @GetMapping(path = {"superhelt/{superheroName}"})
-    public ResponseEntity<List<SuperheltDTO>> getOneSuperhero(@PathVariable String superheroName) {
-        List<SuperheltDTO> superhero = superheltService.getOneSuperhero(superheroName);
+    public ResponseEntity<List<SuperheroDTO>> getOneSuperhero(@PathVariable String superheroName) {
+        List<SuperheroDTO> superhero = superheltService.getOneSuperhero(superheroName);
         return new ResponseEntity<>(superhero, HttpStatus.OK);
     }
 
