@@ -3,7 +3,7 @@ package com.example.superheroversion4.repositories;
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheroDTO;
-import com.example.superheroversion4.model.Superhelt;
+import com.example.superheroversion4.model.Superhero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
 public class ArrayRespository implements iRepository{
 
     @Override
-    public List<Superhelt> getSuperhero() {
-        List<Superhelt> superhelt = new ArrayList<>();
+    public List<Superhero> getSuperhero() {
+        List<Superhero> superhelt = new ArrayList<>();
 
-        for (Superhelt superhero : superhelt) {
-            superhelt.add(new Superhelt(superhero.getSuperheroID(), superhero.getSuperheroName(), superhero.getRealName(),
+        for (Superhero superhero : superhelt) {
+            superhelt.add(new Superhero(superhero.getSuperheroID(), superhero.getSuperheroName(), superhero.getRealName(),
                     superhero.getCreationYear(), superhero.getCityName(), superhero.getSuperpower(), superhero.isHuman()));
         }
         return superhelt;

@@ -3,7 +3,7 @@ package com.example.superheroversion4.repositories;
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheroDTO;
-import com.example.superheroversion4.model.Superhelt;
+import com.example.superheroversion4.model.Superhero;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class SuperheltRepository implements iRepository {
+public class SuperheroRepository implements iRepository {
 
     @Value("${spring.datasource.url}")
     private String db_url;
@@ -26,8 +26,8 @@ public class SuperheltRepository implements iRepository {
 
    // Return all heroes
     @Override
-    public List<Superhelt> getSuperhero() {
-        List<Superhelt> superheroes = new ArrayList<Superhelt>();
+    public List<Superhero> getSuperhero() {
+        List<Superhero> superheroes = new ArrayList<Superhero>();
         try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
             String SQL = "SELECT * FROM Superhero;";
             Statement stmt = con.createStatement();
@@ -40,7 +40,7 @@ public class SuperheltRepository implements iRepository {
                 String cityName = rs.getString("cityName");
                 String superpower = rs.getString("superpower");
                 boolean isHuman = rs.getBoolean("isHuman");
-                superheroes.add(new Superhelt(superheroID, superheroName, realName, creationYear, cityName, superpower, isHuman));
+                superheroes.add(new Superhero(superheroID, superheroName, realName, creationYear, cityName, superpower, isHuman));
             }
             return superheroes;
         } catch (SQLException e) {

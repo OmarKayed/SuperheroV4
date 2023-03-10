@@ -3,8 +3,8 @@ package com.example.superheroversion4.controller;
 import com.example.superheroversion4.dto.CityHeroDTO;
 import com.example.superheroversion4.dto.HeroPowerDTO;
 import com.example.superheroversion4.dto.SuperheroDTO;
-import com.example.superheroversion4.model.Superhelt;
-import com.example.superheroversion4.service.SuperheltService;
+import com.example.superheroversion4.model.Superhero;
+import com.example.superheroversion4.service.SuperheroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,41 +16,41 @@ import java.util.List;
 
 @Controller
 @RequestMapping("superhelte")
-public class SuperheltController {
+public class SuperheroController {
 
-    private SuperheltService superheltService;
+    private SuperheroService superheroService;
 
-    public SuperheltController(SuperheltService superheltService) {
-        this.superheltService = superheltService;
+    public SuperheroController(SuperheroService superheroService) {
+        this.superheroService = superheroService;
     }
 
     @GetMapping(path = {"", "/"})
-    public ResponseEntity<List<Superhelt>> getSuperheroes() {
-        List<Superhelt> superheroList = superheltService.getSuperhero();
-        return new ResponseEntity<List<Superhelt>>(superheroList, HttpStatus.OK);
+    public ResponseEntity<List<Superhero>> getSuperheroes() {
+        List<Superhero> superheroList = superheroService.getSuperhero();
+        return new ResponseEntity<List<Superhero>>(superheroList, HttpStatus.OK);
     }
 
     @GetMapping(path = {"superhelt/{superheroName}"})
     public ResponseEntity<List<SuperheroDTO>> getOneSuperhero(@PathVariable String superheroName) {
-        List<SuperheroDTO> superhero = superheltService.getOneSuperhero(superheroName);
+        List<SuperheroDTO> superhero = superheroService.getOneSuperhero(superheroName);
         return new ResponseEntity<>(superhero, HttpStatus.OK);
     }
 
     @GetMapping(path = {"/superpower/count/{superheroName}"})
     public ResponseEntity<List<HeroPowerDTO>> getAllPower(@PathVariable String superheroName) {
-        List<HeroPowerDTO> superheroList = superheltService.getAllPowers(superheroName);
+        List<HeroPowerDTO> superheroList = superheroService.getAllPowers(superheroName);
         return new ResponseEntity<List<HeroPowerDTO>>(superheroList, HttpStatus.OK);
     }
 
     @GetMapping(path = {"superpower/{superheroName}"})
     public ResponseEntity<List<HeroPowerDTO>> CertinHeroWithHeropower(@PathVariable String superheroName) {
-        List <HeroPowerDTO> superheroWithPower = superheltService.CertinHeroWithHeropower(superheroName);
+        List <HeroPowerDTO> superheroWithPower = superheroService.CertinHeroWithHeropower(superheroName);
         return new ResponseEntity<>(superheroWithPower, HttpStatus.OK);
     }
 
     @GetMapping(path = {"city/{superheroName}"})
     public ResponseEntity<List<CityHeroDTO>> HeroFromCityWithName(@PathVariable String superheroName) {
-        List<CityHeroDTO> superheroCitylist = superheltService.HeroFromCityWithName(superheroName);
+        List<CityHeroDTO> superheroCitylist = superheroService.HeroFromCityWithName(superheroName);
         return new ResponseEntity<>(superheroCitylist, HttpStatus.OK);
     }
 

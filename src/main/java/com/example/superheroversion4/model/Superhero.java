@@ -1,6 +1,6 @@
 package com.example.superheroversion4.model;
 
-public class Superhelt {
+public class Superhero {
     // attributes
     private int superheroID;
     private String superheroName;
@@ -12,7 +12,7 @@ public class Superhelt {
 
 
     // constructor
-    public Superhelt (int superheroID, String superheroName, String realName, int creationYear, String cityName, String superpower, boolean isHuman) {
+    public Superhero(int superheroID, String superheroName, String realName, int creationYear, String cityName, String superpower, boolean isHuman) {
         this.superheroID = superheroID;
         this.superheroName = superheroName;
         this.realName = realName;
@@ -22,14 +22,14 @@ public class Superhelt {
         this.isHuman = isHuman;
     }
 
-    public Superhelt(String superheroname, String realName, int creationYear) {
+    public Superhero(String superheroname, String realName, int creationYear) {
         this.superheroName = superheroname;
         this.realName = realName;
         this.creationYear = creationYear;
 
     }
 
-    public Superhelt () {
+    public Superhero() {
 
     }
 
