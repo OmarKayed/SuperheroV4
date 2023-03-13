@@ -2,6 +2,8 @@ package com.example.superheroversion4.dto;
 
 public class CityHeroDTO {
 
+    // En DTO til at kunne finde ud af hvilken by superhelten er fra
+
     private String realName;
     private String cityName;
 

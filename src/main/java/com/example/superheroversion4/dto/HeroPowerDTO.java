@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class HeroPowerDTO {
+
+// En DTO til at finde ud af hvilke superkræfte en superhelt har
     private String superheroName;
     private String realName;
     private String superpower;

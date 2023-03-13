@@ -26,6 +26,4 @@ public interface iRepository {
    // Svar på fjerede JSON spørgsmål, som retunerer hvilken by superhelten kommer fra med atributterne realName og cityName
     List<CityHeroDTO> HeroFromCityWithName(String superheroName);
 
-
-
 }

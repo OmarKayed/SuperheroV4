@@ -1,6 +1,8 @@
 package com.example.superheroversion4.dto;
 
 public class HeroCountPowerDTO {
+
+    //En DTO til at finde ud af hvor mange kræfter en superhelt har
     private String superheroName;
     private String heroName;
     private int powerCount;

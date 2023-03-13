@@ -1,6 +1,10 @@
 package com.example.superheroversion4.dto;
 
 public class SuperheroDTO {
+
+    // En DTO til at finde ud af hvornår en superhelt blev født
+
+
     private String superheroName;
     private String realName;
     private int creationYear;
